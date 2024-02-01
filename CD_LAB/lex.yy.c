@@ -284,9 +284,10 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 
 #define YY_NUM_RULES 3
 #define YY_END_OF_BUFFER 4
-static yyconst short int yy_accept[7] =
+static yyconst short int yy_accept[12] =
     {   0,
-        0,    0,    4,    2,    1,    0
+        0,    0,    4,    3,    3,    1,    0,    0,    0,    2,
+        0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -295,16 +296,16 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    3,    1,    1,    1,    1,    4,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    3,    3,    3,    3,
+        1,    1,    1,    1,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        1,    1,    1,    1,    1,    1,    5,    5,    5,    5,
 
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    3,    3,    3,
-        3,    3,    1,    1,    1,    1,    1,    1,    1,    1,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    5,    5,    5,
+        5,    5,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -321,29 +322,35 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[4] =
+static yyconst int yy_meta[6] =
     {   0,
-        1,    1,    1
+        1,    1,    2,    1,    1
     } ;
 
-static yyconst short int yy_base[7] =
+static yyconst short int yy_base[15] =
     {   0,
-        0,    0,    4,    5,    5,    5
+        0,    2,   15,   16,    0,   16,   11,   10,    8,    0,
+       16,    7,    0,    9
     } ;
 
-static yyconst short int yy_def[7] =
+static yyconst short int yy_def[15] =
     {   0,
-        6,    1,    6,    6,    6,    0
+       12,   12,   11,   11,   13,   11,   14,   14,    8,    8,
+        0,   11,   11,   11
     } ;
 
-static yyconst short int yy_nxt[9] =
+static yyconst short int yy_nxt[22] =
     {   0,
-        4,    4,    5,    6,    3,    6,    6,    6
+       11,    7,   11,    5,    6,    5,    6,    4,    4,    8,
+        8,   10,    9,    9,   11,    3,   11,   11,   11,   11,
+       11
     } ;
 
-static yyconst short int yy_chk[9] =
+static yyconst short int yy_chk[22] =
     {   0,
-        1,    1,    1,    3,    6,    6,    6,    6
+        0,   13,    0,    1,    1,    2,    2,   12,   12,   14,
+       14,    9,    8,    7,    3,   11,   11,   11,   11,   11,
+       11
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -357,31 +364,13 @@ static char *yy_last_accepting_cpos;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "vowel.l"
+#line 1 "uppertolower.l"
 #define INITIAL 0
-#line 2 "vowel.l"
-#include <stdio.h>
-#include <stdbool.h>
-
-int vowelCount = 0;
-
-bool checkOrder(char current) {
-    const char vowels[] = "aeiou";
-    if (current == vowels[vowelCount]) {
-        vowelCount++;
-        if (vowelCount == 5) {
-            return true;
-        }
-    } else {
-        vowelCount = (current == 'a') ? 1 : 0;
-    }
-    return false;
-}
-
-int yywrap(void) {
-    return 1;
-}
-#line 385 "lex.yy.c"
+#line 2 "uppertolower.l"
+#undef yywrap
+#define yywrap() 1
+FILE *fptr;
+#line 374 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -532,10 +521,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 25 "vowel.l"
+#line 7 "uppertolower.l"
 
 
-#line 539 "lex.yy.c"
+#line 528 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -586,13 +575,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 7 )
+				if ( yy_current_state >= 12 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 5 );
+		while ( yy_base[yy_current_state] != 16 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -620,29 +609,20 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 27 "vowel.l"
-{
-    if (checkOrder(yytext[0])) {
-        printf("Accepted: %s\n", yytext);
-        // Reset count for the next string
-        vowelCount = 0;
-    }
-}
+#line 9 "uppertolower.l"
+printf("%c", yytext[0] ^ 32);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 35 "vowel.l"
-{
-    // Reject any character not matching the pattern
-    printf("Rejected: %s\n", yytext);
-}
+#line 10 "uppertolower.l"
+{ printf("%s", yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 40 "vowel.l"
+#line 12 "uppertolower.l"
 ECHO;
 	YY_BREAK
-#line 646 "lex.yy.c"
+#line 626 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -934,7 +914,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 7 )
+			if ( yy_current_state >= 12 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -969,11 +949,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 7 )
+		if ( yy_current_state >= 12 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 6);
+	yy_is_jam = (yy_current_state == 11);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1528,10 +1508,15 @@ int main()
 	return 0;
 	}
 #endif
-#line 40 "vowel.l"
+#line 12 "uppertolower.l"
 
 
-int main() {
-    yylex();
-    return 0;
+void main()
+{
+
+fptr= fopen("UpperComment_Text.txt","r");
+yyin = fptr;
+yylex();
+
 }
+

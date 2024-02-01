@@ -262,7 +262,7 @@ public class SDES {
 	public static void main(String[] args)
 	{
 
-		des obj = new des();
+		SDES obj = new SDES();
 
 		obj.key_generation(); // call to key generation
 							// function
@@ -280,11 +280,15 @@ public class SDES {
 
 		int[] ciphertext = obj.encryption(plaintext);
 
-		System.out.println(); 
+
+		System.out.println();  
+
+
 		System.out.println(
 			"Your cipher Text is :"); // printing the cipher 
 									// text
 		for (int i = 0; i < 8; i++)
+		
 			System.out.print(ciphertext[i] + " ");
 
 		int[] decrypted = obj.decryption(ciphertext);

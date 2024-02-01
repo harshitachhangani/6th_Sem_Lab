@@ -8,8 +8,9 @@ public class keyGenerate {
     int key1[] = new int[8];
     int key2[] = new int[8];
 
-    
 
+
+    
     public void keyGeneration() {
 
         System.out.println("Given Plain Text :");
