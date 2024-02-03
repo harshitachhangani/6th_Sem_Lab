@@ -279,10 +279,7 @@ public class SDES {
 			System.out.print(plaintext[i] + " ");
 
 		int[] ciphertext = obj.encryption(plaintext);
-
-
 		System.out.println();  
-
 
 		System.out.println(
 			"Your cipher Text is :"); // printing the cipher 

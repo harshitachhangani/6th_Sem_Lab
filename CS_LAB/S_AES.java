@@ -31,7 +31,6 @@ public class S_AES {
 		return sb.toString();
 	}
 
-	// Galois field Multiplication
 	private int gfMul(int a, int b) {
         int product = 0; //the product of the multiplication
             
@@ -94,62 +93,6 @@ public class S_AES {
 		return sb.toString();
 	}
 
-	public String encrypt(String plainText) {
-		// Round 0 - Add Key
-		String roundZeroResult = stringXOR(plainText, key0);
-		// Round 1 - Nibble Substitution -> Shift Row -> Mix Columns -> Add Key
-		String shiftRowResult = shiftRow(nibbleSubstitution(roundZeroResult, SBOX));
-		String matrix[][] = new String[2][2];
-		matrix[0][0] = shiftRowResult.substring(0,4);
-		matrix[0][1] = shiftRowResult.substring(8,12);
-		matrix[1][0] = shiftRowResult.substring(4,8);
-		matrix[1][1] = shiftRowResult.substring(12,16);
-
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0 ; i < encryptionConstantMatrix.length ; i++) {
-			for(int j = 0 ; j < matrix.length ; j++) {
-				String tempResults[] = new String[2];
-				for(int k = 0 ; k < 2 ; k++) {
-					tempResults[k] = decimalToBinary(gfMul(encryptionConstantMatrix[i][k],binaryToDecimal(matrix[k][j])), 4);
-				}
-				sb.append(stringXOR(tempResults[0], tempResults[1]));
-			}
-		}
-		String res = sb.toString();
-		String mixColumnsResult = res.substring(0,4) + res.substring(8,12) + res.substring(4,8) + res.substring(12, 16);
-		String roundOneResult = stringXOR(mixColumnsResult, key1);
-		// Round 2 - Nibble Substitution -> Shift Row -> Add Key
-		String roundTwoResult = stringXOR(shiftRow(nibbleSubstitution(roundOneResult, SBOX)), key2);
-		return roundTwoResult;
-	}
-
-	public String decrypt(String cipherText) {
-		// Round 0 - Add Key
-		String roundZeroResult = stringXOR(cipherText, key2);
-		// Round 1 - Shift Row -> Nibble Substitution -> Add Key -> Mix Columns
-		String addKeyResult = stringXOR(nibbleSubstitution(shiftRow(roundZeroResult), SBOX_INV), key1);
-		String matrix[][] = new String[2][2];
-		matrix[0][0] = addKeyResult.substring(0,4);
-		matrix[0][1] = addKeyResult.substring(8,12);
-		matrix[1][0] = addKeyResult.substring(4,8);
-		matrix[1][1] = addKeyResult.substring(12,16);
-
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0 ; i < decryptionConstantMatrix.length ; i++) {
-			for(int j = 0 ; j < matrix.length ; j++) {
-				String tempResults[] = new String[2];
-				for(int k = 0 ; k < 2 ; k++) {
-					tempResults[k] = decimalToBinary(gfMul(decryptionConstantMatrix[i][k],binaryToDecimal(matrix[k][j])), 4);
-				}
-				sb.append(stringXOR(tempResults[0], tempResults[1]));
-			}
-		}
-		String res = sb.toString();
-		String mixColumnsResult = res.substring(0,4) + res.substring(8,12) + res.substring(4,8) + res.substring(12, 16);
-		// Round 2 - Shift Row -> Nibble Substitution -> Add Key
-		String roundTwoResult = stringXOR(nibbleSubstitution(shiftRow(mixColumnsResult), SBOX_INV), key0);
-		return roundTwoResult;
-	}
 
 	public static void main(String[] args) {
 		String key = null, msg = null;
@@ -163,11 +106,10 @@ public class S_AES {
 		S_AES simplifiedAdvancedEncryptionStandard = new S_AES(key);
 		System.out.println(simplifiedAdvancedEncryptionStandard.getKeys());
 
-		String encryptedMsg = simplifiedAdvancedEncryptionStandard.encrypt(msg);
-		System.out.println("Encrypted Text is: "+encryptedMsg);
-
-		String decryptedMsg = simplifiedAdvancedEncryptionStandard.decrypt(encryptedMsg);
-		System.out.println("Decrypted Text is: "+decryptedMsg);
+		
 		sc.close();
 	}
 }
+
+// Enter 16-bit Binary key: 0100101011110101
+// Enter 16-bit Cipher Text: 1101011100101000
