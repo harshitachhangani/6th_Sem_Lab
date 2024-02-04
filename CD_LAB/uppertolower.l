@@ -1,7 +1,7 @@
 %{
-#undef yywrap
-#define yywrap() 1
-FILE *fptr;
+    #undef yywrap
+    #define yywrap() 1
+    FILE *fptr;
 %}
 
 %%
@@ -14,9 +14,9 @@ FILE *fptr;
 void main()
 {
 
-fptr= fopen("UpperComment_Text.txt","r");
-yyin = fptr;
-yylex();
+    fptr= fopen("UpperComment_Text.txt","r");
+    yyin = fptr;
+    yylex();
 
 }
 
