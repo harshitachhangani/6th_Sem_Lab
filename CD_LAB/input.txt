@@ -1,10 +1,10 @@
-aadr helllo there  aaa
-Asia is beggist continent
-aatuh rytga
-Absdfghka arryaa
-Anushka asa
-aadr helllo there  aaa
-Asia is beggist continent
-aatuh rytga
-Absdfghka arryaa
-Anushka asa
+Int main)(
+}
+
+X=y+z ;
+
+Int x,y,z ;
+
+Printf(“sum %d %d”,x);
+
+{
