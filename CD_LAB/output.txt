@@ -1,9 +1,47 @@
-aadr helllo there  aaa
+ Keyword: Int
+
+ Identifier: main
+
+ Delimiter: )
+
+ Delimiter: (
+
+ Delimiter: }
+
+ Identifier: X
+
+ Assignment Operator: =
+
+ Identifier: y
+
+ Identifier: z
+
+ Keyword: Int
+
+ Identifier: x
+
+ Identifier: y
+
+ Identifier: z
+
+ Keyword:Printf
+ Delimiter: (
+
+ Identifier: sum
+
+ Identifier: d
+
+ Identifier: d
+
+ Identifier: x
+
+ Delimiter: )
+
+ Delimiter: {
 
 
-aatuh rytga
 
-Absdfghka arryaa
 
-Anushka asa
 
+
+ Total Tokens = 21
