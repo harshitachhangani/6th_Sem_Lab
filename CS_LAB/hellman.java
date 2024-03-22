@@ -1,60 +1,36 @@
-// This program calculates the Key for two persons
-// using the Diffie-Hellman Key exchange algorithm
-class hellman {
+import java.math.BigInteger;
+import java.util.Scanner;
 
-	// Power function to return value of a ^ b mod P
-	private static long power(long a, long b, long p)
-	{
-		if (b == 1)
-			return a;
-		else
-			return (((long)Math.pow(a, b)) % p);
-	}
+public class hellman {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-	// Driver code
-	public static void main(String[] args)
-	{
-		long P, G, x, a, y, b, ka, kb;
+        System.out.print("Enter a prime number P: ");
+        BigInteger P = sc.nextBigInteger();
 
-		// Both the persons will be agreed upon the
-		// public keys G and P
+        System.out.print("Enter a primitive root for P (G): ");
+        BigInteger G = sc.nextBigInteger();
 
-		// A prime number P is taken
-		P = 23;
-		System.out.println("The value of P:" + P);
+        System.out.print("Enter the private key for Alice (a): ");
+        BigInteger a = sc.nextBigInteger();
 
-		// A primitive root for P, G is taken
-		G = 9;
-		System.out.println("The value of G:" + G);
+        System.out.print("Enter the private key for Bob (b): ");
+        BigInteger b = sc.nextBigInteger();
 
-		// Alice will choose the private key a
-		// a is the chosen private key
-		a = 4;
-		System.out.println("The private key a for Alice:"
-						+ a);
+        // Calculate Alice's public key
+        BigInteger publicKeyAlice = G.modPow(a, P);
 
-		// Gets the generated key
-		x = power(G, a, P);
+        // Calculate Bob's public key
+        BigInteger publicKeyBob = G.modPow(b, P);
 
-		// Bob will choose the private key b
-		// b is the chosen private key
-		b = 3;
-		System.out.println("The private key b for Bob:"
-						+ b);
+        System.out.println("Shared ECC Public Key for Alice: " + publicKeyAlice);
+        System.out.println("Shared ECC Public Key for Bob: " + publicKeyBob);
 
-		// Gets the generated key
-		y = power(G, b, P);
+        System.out.println("Diffie-Hellman Key Exchange:");
+        BigInteger sharedSecretAlice = publicKeyBob.modPow(a, P);
+        BigInteger sharedSecretBob = publicKeyAlice.modPow(b, P);
 
-		// Generating the secret key after the exchange
-		// of keys
-		ka = power(y, a, P); // Secret key for Alice
-		kb = power(x, b, P); // Secret key for Bob
-
-		System.out.println("Secret key for the Alice is:"
-						+ ka);
-		System.out.println("Secret key for the Bob is:"
-						+ kb);
-	}
+        System.out.println("Shared Secret for Alice: " + sharedSecretAlice);
+        System.out.println("Shared Secret for Bob: " + sharedSecretBob);
+    }
 }
-
-// This code is contributed by raghav14
